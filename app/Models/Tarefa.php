@@ -49,7 +49,7 @@
             }
             if ($conexao = Conexao::getInstance()){
                 $stmt = $conexao->prepare($query);
-                if($stmt->execute()){
+                if($stmt->execute()){ //Caso o statement retorne ok retornamos verdadeiro                    
                     return true;
                 }
             }
