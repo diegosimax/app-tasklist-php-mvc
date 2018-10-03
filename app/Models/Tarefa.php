@@ -56,8 +56,33 @@
             return false;
         }
 
-        //CONTINUAR
+        /**
+         * Transformar dados em string
+         */
+        private function converteDados($data){
+            if(is_string($data) & !empty($data)){
+                return "'".addslashes($data)."'";                
+            }elseif (is_bool($data)){
+                return $data ? 'TRUE' : 'FALSE';
+            }elseif ($data !== ''){
+                return $data;
+            }else{
+                return 'NULL';
+            }
+        }
         
+        /**
+         * Preparar dados
+         */
+        private function prepararDados($data){
+            $retorno = array();
+            foreach ($data as $k => $v) {
+                if (is_scalar($v)) {
+                    $retorno[$k] = $this->escapar($v);
+                }
+            }
+            return $retorno;
+        }
 
     }
     
